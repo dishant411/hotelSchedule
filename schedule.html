@@ -1,260 +1,279 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Days Inn Goldsboro Front Desk Schedule</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        header {
-            background-color: #003366;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        .container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
-        .schedule-section {
-            flex: 3;
-        }
-        .notes-section {
-            flex: 1;
-            margin-left: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #003366;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #e6f7ff;
-        }
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 5px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-        }
-        footer {
-            background-color: #003366;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Schedule - Hoteliers Employee Scheduling</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+    header {
+      background-color: #003366;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .main-container {
+      display: flex;
+      gap: 20px;
+      margin: 20px;
+    }
+    .cards-container {
+      flex: 1;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .cards-container h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+    .employee-decks-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .deck {
+      width: 80px;
+      height: 120px;
+      position: relative;
+    }
+    .employee-card {
+      width: 80px;
+      height: 120px;
+      background-color: #e6f7ff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: grab;
+      text-align: center;
+      line-height: 120px;
+      user-select: none;
+      position: absolute;
+    }
+    .schedule-container {
+      flex: 2;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .schedule-container h2 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      vertical-align: middle;
+      height: 100px;
+    }
+    th {
+      background-color: #003366;
+      color: #fff;
+    }
+    .droppable {
+      background-color: #f9f9f9;
+    }
+    .drag-over {
+      background-color: #cceeff !important;
+    }
+  </style>
 </head>
 <body>
-
-<header>
-    <h1>Days Inn Goldsboro</h1>
-    <h2>Front Desk Employee Schedule</h2>
-</header>
-
-<div class="container">
-    <section class="schedule-section">
-        <h2>Weekly Schedule (05/20/2024 TO 05/26/2024)</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Employee</th>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
-                    <th>Saturday</th>
-                    <th>Sunday</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-<tr>
-    <td contenteditable="true">Ali</td>
-    
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-</tr>
-
-
-<tr>
-    <td contenteditable="true">Urmik</td>
-    
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-</tr>
-
-
-<tr>
-    <td contenteditable="true">Nilisha</td>
-    
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-</tr>
-
-
-<tr>
-    <td contenteditable="true">Ashley</td>
-    
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-</tr>
-
-
-<tr>
-    <td contenteditable="true">Katie</td>
-    
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-
-<td><input type="text" placeholder="Enter shift"></td>
-
-</tr>
-
-            </tbody>
-        </table>
-    </section>
-    <section class="notes-section">
-        <h2>Notes for Next Week</h2>
-        
-<h3>Ali</h3>
-<textarea placeholder="Enter notes"></textarea>
-
-
-<h3>Urmik</h3>
-<textarea placeholder="Enter notes"></textarea>
-
-
-<h3>Nilisha</h3>
-<textarea placeholder="Enter notes"></textarea>
-
-
-<h3>Ashley</h3>
-<textarea placeholder="Enter notes"></textarea>
-
-
-<h3>Katie</h3>
-<textarea placeholder="Enter notes"></textarea>
-
-    </section>
-</div>
-
-<footer>
-    <p>&copy; 2024 Hotel Front Desk. All rights reserved.</p>
-</footer>
-
+  <header>
+    <h1>Schedule</h1>
+  </header>
+  <div class="main-container">
+    <!-- LEFT: Employee Card Area -->
+    <div class="cards-container">
+      <h2>Employee Card</h2>
+      <div class="employee-decks-container" id="employeeDecks">
+        <!-- Employee decks will be generated here -->
+      </div>
+    </div>
+    <!-- RIGHT: Schedule Grid -->
+    <div class="schedule-container">
+      <h2>Schedule Grid</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Shift</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>7am - 3pm</td>
+            <td class="droppable" data-day="Monday" data-shift="7am-3pm"></td>
+            <td class="droppable" data-day="Tuesday" data-shift="7am-3pm"></td>
+            <td class="droppable" data-day="Wednesday" data-shift="7am-3pm"></td>
+            <td class="droppable" data-day="Thursday" data-shift="7am-3pm"></td>
+            <td class="droppable" data-day="Friday" data-shift="7am-3pm"></td>
+            <td class="droppable" data-day="Saturday" data-shift="7am-3pm"></td>
+            <td class="droppable" data-day="Sunday" data-shift="7am-3pm"></td>
+          </tr>
+          <tr>
+            <td>3pm - 11pm</td>
+            <td class="droppable" data-day="Monday" data-shift="3pm-11pm"></td>
+            <td class="droppable" data-day="Tuesday" data-shift="3pm-11pm"></td>
+            <td class="droppable" data-day="Wednesday" data-shift="3pm-11pm"></td>
+            <td class="droppable" data-day="Thursday" data-shift="3pm-11pm"></td>
+            <td class="droppable" data-day="Friday" data-shift="3pm-11pm"></td>
+            <td class="droppable" data-day="Saturday" data-shift="3pm-11pm"></td>
+            <td class="droppable" data-day="Sunday" data-shift="3pm-11pm"></td>
+          </tr>
+          <tr>
+            <td>11pm - 7am</td>
+            <td class="droppable" data-day="Monday" data-shift="11pm-7am"></td>
+            <td class="droppable" data-day="Tuesday" data-shift="11pm-7am"></td>
+            <td class="droppable" data-day="Wednesday" data-shift="11pm-7am"></td>
+            <td class="droppable" data-day="Thursday" data-shift="11pm-7am"></td>
+            <td class="droppable" data-day="Friday" data-shift="11pm-7am"></td>
+            <td class="droppable" data-day="Saturday" data-shift="11pm-7am"></td>
+            <td class="droppable" data-day="Sunday" data-shift="11pm-7am"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+    /************************************************************
+     * Drag and Drop Functions (same as before)
+     ************************************************************/
+    function createEmployeeDeck(employeeName) {
+      const deck = document.createElement('div');
+      deck.className = 'deck';
+      deck.dataset.employee = employeeName;
+      for (let i = 0; i < 10; i++) {
+        const card = document.createElement('div');
+        card.className = 'employee-card';
+        card.draggable = true;
+        card.textContent = employeeName;
+        card.dataset.employee = employeeName;
+        card.style.top = (i * 2) + 'px';
+        card.style.left = (i * 2) + 'px';
+        card.style.zIndex = i + 1;
+        card.addEventListener('dragstart', handleDragStart);
+        card.addEventListener('dragend', handleDragEnd);
+        deck.appendChild(card);
+      }
+      deck.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        deck.classList.add('drag-over');
+      });
+      deck.addEventListener('dragleave', () => {
+        deck.classList.remove('drag-over');
+      });
+      deck.addEventListener('drop', (e) => {
+        e.preventDefault();
+        deck.classList.remove('drag-over');
+        const cardId = e.dataTransfer.getData("text/plain");
+        const card = document.getElementById(cardId);
+        if (card) {
+          if (deck.querySelectorAll('.employee-card').length < 10) {
+            if (card.parentElement) {
+              card.parentElement.removeChild(card);
+            }
+            deck.appendChild(card);
+          } else {
+            alert("Deck already has 10 cards for " + deck.dataset.employee);
+          }
+        }
+      });
+      return deck;
+    }
+    let draggedCard = null;
+    function handleDragStart(e) {
+      draggedCard = this;
+      if (!this.id) {
+        this.id = 'card-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+      }
+      e.dataTransfer.setData("text/plain", this.id);
+      setTimeout(() => { this.style.opacity = "0.5"; }, 0);
+    }
+    function handleDragEnd(e) {
+      this.style.opacity = "1";
+    }
+    document.querySelectorAll('.droppable').forEach(cell => {
+      cell.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        cell.classList.add('drag-over');
+      });
+      cell.addEventListener('dragleave', () => {
+        cell.classList.remove('drag-over');
+      });
+      cell.addEventListener('drop', (e) => {
+        e.preventDefault();
+        cell.classList.remove('drag-over');
+        const cardId = e.dataTransfer.getData("text/plain");
+        const card = document.getElementById(cardId);
+        if (card) {
+          if (card.parentElement && card.parentElement.classList.contains('deck')) {
+            card.parentElement.removeChild(card);
+          }
+          cell.appendChild(card);
+          card.style.position = 'static';
+          card.style.top = 'auto';
+          card.style.left = 'auto';
+          card.style.zIndex = 'auto';
+        }
+      });
+    });
+    const employeeDecksContainer = document.getElementById('employeeDecks');
+    employeeDecksContainer.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+    employeeDecksContainer.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const cardId = e.dataTransfer.getData("text/plain");
+      const card = document.getElementById(cardId);
+      if (card) {
+        const employeeName = card.dataset.employee;
+        const decks = employeeDecksContainer.getElementsByClassName('deck');
+        let targetDeck = null;
+        for (let i = 0; i < decks.length; i++) {
+          if (decks[i].dataset.employee === employeeName) {
+            targetDeck = decks[i];
+            break;
+          }
+        }
+        if (targetDeck) {
+          if (targetDeck.querySelectorAll('.employee-card').length < 10) {
+            if (card.parentElement) {
+              card.parentElement.removeChild(card);
+            }
+            targetDeck.appendChild(card);
+          } else {
+            alert("Deck already has 10 cards for " + employeeName);
+          }
+        }
+      }
+    });
+    const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+    const decksContainer = document.getElementById('employeeDecks');
+    storedEmployees.forEach(name => {
+      const deck = createEmployeeDeck(name);
+      decksContainer.appendChild(deck);
+    });
+  </script>
 </body>
 </html>
