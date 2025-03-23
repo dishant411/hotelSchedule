@@ -1,0 +1,174 @@
+/* Common Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f7f7f7;
+    color: #333;
+  }
+  
+  /* Header */
+  header {
+    background-color: #003366;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Layout Containers */
+  .main-container {
+    display: flex;
+    gap: 20px;
+    margin: 20px;
+  }
+  
+  /* Cards Container (Schedule) */
+  .cards-container {
+    flex: 1;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .cards-container h2 {
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  /* Employee Decks */
+  .employee-decks-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .deck {
+    width: 80px;
+    height: 120px;
+    position: relative;
+  }
+  .employee-card {
+    width: 80px;
+    height: 120px;
+    background-color: #e6f7ff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: grab;
+    text-align: center;
+    line-height: 120px;
+    user-select: none;
+    position: absolute;
+  }
+  
+  /* Schedule Grid */
+  .schedule-container {
+    flex: 2;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  .schedule-container h2 {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+  }
+  th {
+    background-color: #003366;
+    color: #fff;
+  }
+  .droppable {
+    background-color: #f9f9f9;
+  }
+  .drag-over {
+    background-color: #cceeff !important;
+  }
+  
+  /* Landing Page Styles */
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  h1 {
+    text-align: center;
+  }
+  .employee-input {
+    display: flex;
+    gap: 10px;
+  }
+  .employee-input input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .employee-input button {
+    padding: 8px 15px;
+    background: #003366;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .employee-list {
+    margin-top: 20px;
+  }
+  .employee-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  .employee-list li {
+    padding: 5px;
+    margin-bottom: 5px;
+    background: #e6f7ff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .employee-list li button {
+    background: red;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 3px 6px;
+    cursor: pointer;
+  }
+  .instructions {
+    margin-top: 20px;
+  }
+  textarea {
+    width: 100%;
+    height: 100px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .actions {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .actions button {
+    padding: 10px 20px;
+    background: #003366;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
