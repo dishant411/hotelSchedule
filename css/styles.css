@@ -291,27 +291,27 @@ body.dark-mode textarea {
   background: #005fa3;
 }
 
-.employee-card.variant-1 { background-color: #4e9af1; color: #fff; }
-.employee-card.variant-2 { background-color: #7ed957; color: #000; }
-.employee-card.variant-3 { background-color: #ffb84e; color: #000; }
-.employee-card.variant-4 { background-color: #d94e8f; color: #fff; }
-.employee-card.variant-5 { background-color: #9364f1; color: #fff; }
-
-body.dark-mode .employee-card.variant-1 { background-color: #2f6db3; }
-body.dark-mode .employee-card.variant-2 { background-color: #5aa734; }
-body.dark-mode .employee-card.variant-3 { background-color: #c48c32; }
-body.dark-mode .employee-card.variant-4 { background-color: #9c3666; }
-body.dark-mode .employee-card.variant-5 { background-color: #6842b1; }
-
 /* Card Color Variants for Each Deck */
 .employee-card.color-1 { background-color: #4e9af1; color: #fff; }
 .employee-card.color-2 { background-color: #7ed957; color: #000; }
 .employee-card.color-3 { background-color: #ffb84e; color: #000; }
 .employee-card.color-4 { background-color: #d94e8f; color: #fff; }
 .employee-card.color-5 { background-color: #9364f1; color: #fff; }
+.employee-card.color-6 { background-color: #ff4e4e; color: #fff; }
+.employee-card.color-7 { background-color: #40e0d0; color: #000; }
+.employee-card.color-8 { background-color: #ffd700; color: #000; }
+.employee-card.color-9 { background-color: #8a2be2; color: #fff; }
+.employee-card.color-10 { background-color: #00bfff; color: #fff; }
+.employee-card.color-11 { background-color: #ff00ff; color: #fff; }
 
 body.dark-mode .employee-card.color-1 { background-color: #2f6db3; }
 body.dark-mode .employee-card.color-2 { background-color: #5aa734; }
 body.dark-mode .employee-card.color-3 { background-color: #c48c32; }
 body.dark-mode .employee-card.color-4 { background-color: #9c3666; }
 body.dark-mode .employee-card.color-5 { background-color: #6842b1; }
+body.dark-mode .employee-card.color-6 { background-color: #b30000; }
+body.dark-mode .employee-card.color-7 { background-color: #208080; }
+body.dark-mode .employee-card.color-8 { background-color: #b8860b; }
+body.dark-mode .employee-card.color-9 { background-color: #551a8b; }
+body.dark-mode .employee-card.color-10 { background-color: #0080c0; }
+body.dark-mode .employee-card.color-11 { background-color: #b800b8; }
