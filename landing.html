@@ -4,34 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Employee Setup - Hoteliers Scheduling</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    }
-    h1 { text-align: center; }
-    .employee-input { display: flex; gap: 10px; }
-    .employee-input input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-    .employee-input button { padding: 8px 15px; background: #003366; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
-    .employee-list { margin-top: 20px; }
-    .employee-list ul { list-style: none; padding: 0; }
-    .employee-list li { padding: 5px; margin-bottom: 5px; background: #e6f7ff; border: 1px solid #ccc; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
-    .employee-list li button { background: red; color: #fff; border: none; border-radius: 3px; padding: 3px 6px; cursor: pointer; }
-    .instructions { margin-top: 20px; }
-    textarea { width: 100%; height: 100px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-    .actions { margin-top: 20px; text-align: center; }
-    .actions button { padding: 10px 20px; background: #003366; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
-  </style>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="container">
@@ -51,48 +24,6 @@
       <button id="proceedBtn">Proceed to Schedule</button>
     </div>
   </div>
-  <script>
-    let employees = [];
-    const employeeNameInput = document.getElementById('employeeNameInput');
-    const addEmployeeBtn = document.getElementById('addEmployeeBtn');
-    const employeeList = document.getElementById('employeeList');
-    const proceedBtn = document.getElementById('proceedBtn');
-
-    function renderEmployeeList() {
-      employeeList.innerHTML = '';
-      employees.forEach((name, index) => {
-        const li = document.createElement('li');
-        li.textContent = name;
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remove';
-        removeBtn.addEventListener('click', () => {
-          employees.splice(index, 1);
-          renderEmployeeList();
-        });
-        li.appendChild(removeBtn);
-        employeeList.appendChild(li);
-      });
-    }
-
-    addEmployeeBtn.addEventListener('click', () => {
-      const name = employeeNameInput.value.trim();
-      if (name && !employees.includes(name)) {
-        employees.push(name);
-        employeeNameInput.value = '';
-        renderEmployeeList();
-      }
-    });
-
-    proceedBtn.addEventListener('click', () => {
-      if (employees.length === 0) {
-        alert('Please add at least one employee.');
-        return;
-      }
-      localStorage.setItem('employees', JSON.stringify(employees));
-      const instructions = document.getElementById('instructions').value;
-      localStorage.setItem('instructions', instructions);
-      window.location.href = 'schedule.html';
-    });
-  </script>
+  <script src="js/landing.js"></script>
 </body>
 </html>
