@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const deck = document.createElement('div');
       deck.className = 'deck';
       deck.dataset.employee = employeeName;
+      const hash = [...employeeName].reduce((acc, c) => acc + c.charCodeAt(0), 0);
+      const colorClass = 'color-' + ((hash % 5) + 1);
       for (let i = 0; i < 10; i++) {
         const card = document.createElement('div');
-        card.className = 'employee-card';
+        card.className = 'employee-card ' + colorClass;
         card.draggable = true;
         card.textContent = employeeName;
         card.dataset.employee = employeeName;
@@ -133,31 +135,35 @@ document.addEventListener('DOMContentLoaded', () => {
       const cardId = e.dataTransfer.getData("text/plain");
       const card = document.getElementById(cardId);
       if (card) {
-        const employeeName = card.dataset.employee;
-        const decks = employeeDecksContainer.getElementsByClassName('deck');
-        let targetDeck = null;
-        for (let i = 0; i < decks.length; i++) {
-          if (decks[i].dataset.employee === employeeName) {
-            targetDeck = decks[i];
-            break;
+        card.classList.add('discarding');
+        setTimeout(() => {
+          const employeeName = card.dataset.employee;
+          const decks = employeeDecksContainer.getElementsByClassName('deck');
+          let targetDeck = null;
+          for (let i = 0; i < decks.length; i++) {
+            if (decks[i].dataset.employee === employeeName) {
+              targetDeck = decks[i];
+              break;
+            }
           }
-        }
-        if (!targetDeck) {
-          targetDeck = createEmployeeDeck(employeeName);
-          employeeDecksContainer.appendChild(targetDeck);
-        }
-        const cardsInDeck = targetDeck.querySelectorAll('.employee-card');
-        if (card.parentElement) {
-          card.parentElement.removeChild(card);
-        }
-        if (cardsInDeck.length >= 10) {
-          targetDeck.removeChild(cardsInDeck[0]);
-        }
-        card.style.position = 'absolute';
-        card.style.top = (cardsInDeck.length * 2) + 'px';
-        card.style.left = (cardsInDeck.length * 2) + 'px';
-        card.style.zIndex = cardsInDeck.length + 1;
-        targetDeck.appendChild(card);
+          if (!targetDeck) {
+            targetDeck = createEmployeeDeck(employeeName);
+            employeeDecksContainer.appendChild(targetDeck);
+          }
+          const cardsInDeck = targetDeck.querySelectorAll('.employee-card');
+          if (card.parentElement) {
+            card.parentElement.removeChild(card);
+          }
+          if (cardsInDeck.length >= 10) {
+            targetDeck.removeChild(cardsInDeck[0]);
+          }
+          card.style.position = 'absolute';
+          card.style.top = (cardsInDeck.length * 2) + 'px';
+          card.style.left = (cardsInDeck.length * 2) + 'px';
+          card.style.zIndex = cardsInDeck.length + 1;
+          targetDeck.appendChild(card);
+          card.classList.remove('discarding');
+        }, 300);
       }
     });
   
@@ -199,4 +205,60 @@ document.addEventListener('DOMContentLoaded', () => {
       const deck = createEmployeeDeck(name);
       decksContainer.appendChild(deck);
     });
+
+    // Dark Mode Toggle for schedule page
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if(darkModeToggle) {
+      if(localStorage.getItem('darkMode') === 'enabled'){
+          document.body.classList.add('dark-mode');
+          darkModeToggle.textContent = "Light Mode";
+      }
+      darkModeToggle.addEventListener('click', () => {
+          document.body.classList.toggle('dark-mode');
+          if(document.body.classList.contains('dark-mode')){
+            localStorage.setItem('darkMode', 'enabled');
+            darkModeToggle.textContent = "Light Mode";
+          } else {
+            localStorage.setItem('darkMode', 'disabled');
+            darkModeToggle.textContent = "Dark Mode";
+          }
+      });
+    }
+
+    // AI Suggestion Button functionality
+    const aiSuggestionBtn = document.getElementById('aiSuggestionBtn');
+    if(aiSuggestionBtn) {
+      aiSuggestionBtn.addEventListener('click', () => {
+          const instructions = localStorage.getItem('instructions') || "";
+          const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+          const droppableCells = Array.from(document.querySelectorAll('.droppable')).filter(cell => cell.innerHTML.trim() === "");
+          storedEmployees.forEach(employeeName => {
+             const decks = document.getElementById('employeeDecks').getElementsByClassName('deck');
+             let targetDeck = null;
+             for(let i = 0; i < decks.length; i++){
+               if(decks[i].dataset.employee === employeeName){
+                 targetDeck = decks[i];
+                 break;
+               }
+             }
+             if(targetDeck) {
+                const card = targetDeck.querySelector('.employee-card');
+                if(card && droppableCells.length > 0) {
+                   const randomIndex = Math.floor(Math.random() * droppableCells.length);
+                   const cell = droppableCells[randomIndex];
+                   if(card.parentElement) {
+                      card.parentElement.removeChild(card);
+                   }
+                   cell.appendChild(card);
+                   card.style.position = 'static';
+                   card.style.top = 'auto';
+                   card.style.left = 'auto';
+                   card.style.zIndex = 'auto';
+                   droppableCells.splice(randomIndex, 1);
+                }
+             }
+          });
+          console.log("AI suggestion executed with instructions:", instructions);
+      });
+    }
   });
