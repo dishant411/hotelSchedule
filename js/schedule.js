@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
       deck.className = 'deck';
       deck.dataset.employee = employeeName;
       const hash = [...employeeName].reduce((acc, c) => acc + c.charCodeAt(0), 0);
-      const colorClass = 'color-' + ((hash % 5) + 1);
+      const colorClass = 'color-' + ((hash % 11) + 1);
       for (let i = 0; i < 10; i++) {
         const card = document.createElement('div');
         card.className = 'employee-card ' + colorClass;
