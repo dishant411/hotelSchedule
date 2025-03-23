@@ -103,6 +103,12 @@
       <div class="employee-decks-container" id="employeeDecks">
         <!-- Employee decks will be generated here -->
       </div>
+      <div id="discardZone" style="width: 240px; height: 360px; margin: 20px auto 10px auto; padding: 20px; border: 2px dashed #999; text-align: center; background-color: #fafafa; display: flex; align-items: center; justify-content: center;">
+        Drop here to discard employee card
+      </div>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <button id="resetSchedule" style="width: 40px; height: 30px; font-size: 12px;">Reset</button>
+      </div>
     </div>
     <!-- RIGHT: Schedule Grid -->
     <div class="schedule-container">
@@ -257,17 +263,94 @@
           }
         }
         if (targetDeck) {
-          if (targetDeck.querySelectorAll('.employee-card').length < 10) {
-            if (card.parentElement) {
-              card.parentElement.removeChild(card);
-            }
-            targetDeck.appendChild(card);
-          } else {
-            alert("Deck already has 10 cards for " + employeeName);
+          const cardsInDeck = targetDeck.querySelectorAll('.employee-card');
+          if (card.parentElement) {
+            card.parentElement.removeChild(card);
           }
+          if (cardsInDeck.length >= 10) {
+            targetDeck.removeChild(cardsInDeck[0]); // remove the oldest (bottom) card
+          }
+          card.style.position = 'absolute';
+          card.style.top = (cardsInDeck.length * 2) + 'px';
+          card.style.left = (cardsInDeck.length * 2) + 'px';
+          card.style.zIndex = cardsInDeck.length + 1;
+          targetDeck.appendChild(card);
         }
       }
     });
+    const discardZone = document.getElementById('discardZone');
+    discardZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      discardZone.style.backgroundColor = "#e0f7fa";
+    });
+    discardZone.addEventListener('dragleave', () => {
+      discardZone.style.backgroundColor = "#fafafa";
+    });
+    discardZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      discardZone.style.backgroundColor = "#fafafa";
+      const cardId = e.dataTransfer.getData("text/plain");
+      const card = document.getElementById(cardId);
+      if (card) {
+        const employeeName = card.dataset.employee;
+        const decks = employeeDecksContainer.getElementsByClassName('deck');
+        let targetDeck = null;
+        for (let i = 0; i < decks.length; i++) {
+          if (decks[i].dataset.employee === employeeName) {
+            targetDeck = decks[i];
+            break;
+          }
+        }
+        if (!targetDeck) {
+          // create a new deck for this employee
+          targetDeck = createEmployeeDeck(employeeName);
+          employeeDecksContainer.appendChild(targetDeck);
+        }
+        const cardsInDeck = targetDeck.querySelectorAll('.employee-card');
+        if (card.parentElement) {
+          card.parentElement.removeChild(card);
+        }
+        if (cardsInDeck.length >= 10) {
+          targetDeck.removeChild(cardsInDeck[0]); // remove oldest
+        }
+        card.style.position = 'absolute';
+        card.style.top = (cardsInDeck.length * 2) + 'px';
+        card.style.left = (cardsInDeck.length * 2) + 'px';
+        card.style.zIndex = cardsInDeck.length + 1;
+        targetDeck.appendChild(card);
+      }
+    });
+    document.getElementById('resetSchedule').addEventListener('click', () => {
+      document.querySelectorAll('.droppable').forEach(cell => {
+        const cards = cell.querySelectorAll('.employee-card');
+        cards.forEach(card => {
+          const employeeName = card.dataset.employee;
+          let targetDeck = null;
+          const decks = employeeDecksContainer.getElementsByClassName('deck');
+          for (let i = 0; i < decks.length; i++) {
+            if (decks[i].dataset.employee === employeeName) {
+              targetDeck = decks[i];
+              break;
+            }
+          }
+          if (!targetDeck) {
+            targetDeck = createEmployeeDeck(employeeName);
+            employeeDecksContainer.appendChild(targetDeck);
+          }
+          const cardsInDeck = targetDeck.querySelectorAll('.employee-card');
+          if (cardsInDeck.length >= 10) {
+            targetDeck.removeChild(cardsInDeck[0]);
+          }
+          card.style.position = 'absolute';
+          card.style.top = (cardsInDeck.length * 2) + 'px';
+          card.style.left = (cardsInDeck.length * 2) + 'px';
+          card.style.zIndex = cardsInDeck.length + 1;
+          targetDeck.appendChild(card);
+        });
+        cell.innerHTML = '';
+      });
+    });
+
     const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
     const decksContainer = document.getElementById('employeeDecks');
     storedEmployees.forEach(name => {
